@@ -10,8 +10,10 @@
         <input type="text" v-model="last_name" class="form-control" id="exampleInputLastName1">
       </div>
       <div class="mb-3">
-        <label for="exampleInputCompanyId1" class="form-label">Company Id</label>
-        <input type="integer" v-model="company_id" class="form-control" id="exampleInputCompanyId1">
+        <label for="exampleInputCompanyId1" class="form-label">Company</label>
+        <select v-model="company_id" class="form-select" aria-label="Default select example">
+          <option v-for="company in this.$store.state.allCompanies" :key="company.id" :value="company.id">{{ company.name }}</option>
+        </select>
       </div>
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email</label>
@@ -40,6 +42,7 @@
         mounted() {
         },
         created() {
+            this.getAllCompanies();
         },
         computed: {
         },
@@ -52,6 +55,9 @@
                 formData.append('email', this.email);
                 formData.append('phone', this.phone);
                 await this.$store.dispatch('createEmployee', formData);
+            },
+            async getAllCompanies() {
+                await this.$store.dispatch('getAllCompanies');
             },
     
         }

@@ -1,5 +1,7 @@
 <template>
+<div class="register-form-wrapper">
 <form v-on:submit.prevent="register">
+  <h1>Register</h1>
   <div class="mb-3">
     <label for="exampleInputName1" class="form-label">Name</label>
     <input type="text" v-model="name" class="form-control" id="exampleInputName1">
@@ -25,7 +27,16 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</div>
 </template>
+
+<style>
+.register-form-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+</style>
 
 <script>
 export default {

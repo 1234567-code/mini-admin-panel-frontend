@@ -17,7 +17,7 @@
                 <td>{{employee.id}}</td>
                 <td>{{employee.first_name}}</td>
                 <td>{{employee.last_name}}</td>
-                <td>{{employee.company_id}}</td>
+                <td>{{employee.company.name}}</td>
                 <td>{{employee.email}}</td>
                 <td>{{employee.phone}}</td>
                 <td class="icons"><router-link :to="{ name: 'UpdateEmployee', params: { employeeData: employee.id }}" ><button>
@@ -31,15 +31,15 @@
     </table>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-          <li :class="{ 'disabled': this.$store.state.employeePagination.current_page === 1 }" class="page-item">
+          <li :class="{ 'disabled': this.$store.state.employeePagination && this.$store.state.employeePagination.current_page === 1 }" class="page-item">
             <a @click="getPaginatedEmployees(this.$store.state.employeePagination.current_page -1)" class="page-link" href="#" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <li v-for="index in this.$store.state.employeePagination.last_page" class="page-item" :class="{ 'active': this.$store.state.employeePagination.current_page === index }">
+          <li v-for="index in this.$store.state.employeePagination && this.$store.state.employeePagination.last_page" class="page-item" :class="{ 'active': this.$store.state.employeePagination.current_page === index }">
             <a @click="getPaginatedEmployees(index)" class="page-link" href="#">{{ index }}</a>
         </li>
-          <li :class="{ 'disabled': this.$store.state.employeePagination.current_page === this.$store.state.employeePagination.last_page }" class="page-item">
+          <li :class="{ 'disabled': this.$store.state.employeePagination && this.$store.state.employeePagination.current_page === this.$store.state.employeePagination.last_page }" class="page-item">
             <a @click="getPaginatedEmployees(this.$store.state.employeePagination.current_page + 1)" class="page-link" href="#" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
             </a>

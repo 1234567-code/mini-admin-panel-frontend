@@ -1,5 +1,7 @@
 <template>
+<div class="form-form-wrapper">
 <form v-on:submit.prevent="login">
+  <h1>login</h1>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
     <input type="email" v-model="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -17,7 +19,15 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</div>
 </template>
+<style>
+.form-form-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+</style>
 
 <script>
 export default {

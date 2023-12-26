@@ -13,6 +13,7 @@ const store =new vuex.Store({
             employees: [],
             companyPagination: {},
             employeePagination: {},
+            allCompanies: [],
         },
     },
 
@@ -25,6 +26,9 @@ const store =new vuex.Store({
         },
         getCompanies({commit}) {
             commit('getCompanies');
+        },
+        getAllCompanies({commit}) {
+            commit('getAllCompanies');
         },
         removeCompany({commit}, id) {
             commit('removeCompany', id);
@@ -96,6 +100,17 @@ const store =new vuex.Store({
             }).then((response) => {
                 state.companies = response.data.data;
                 state.companyPagination = response.data;
+                console.log(response);
+                console.log(state.companyPagination);
+            });
+        },
+        async getAllCompanies(state) {
+            await axios.get('http://localhost:8000/api/get-all-companies', {
+                headers:{
+                    Authorization: `Bearer ${localStorage.token}`
+                }
+            }).then((response) => {
+                state.allCompanies = response.data;
                 console.log(response);
             });
         },

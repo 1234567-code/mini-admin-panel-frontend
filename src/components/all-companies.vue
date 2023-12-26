@@ -15,6 +15,10 @@
             <td>{{company.id}}</td>
             <td>{{company.name}}</td>
             <td>{{company.email}}</td>
+            <td><img
+              :src="`/storage/app/public/logos/${company.logo}`"
+              >
+            </td>
             <td>{{company.website}}</td>
             <td class="icons"><router-link :to="{ name: 'UpdateCompany', params: { companyData: company.id }}" ><button>
               <i class="fas fa-edit edit"></i>
@@ -27,15 +31,15 @@
 </table>
 <nav aria-label="Page navigation example">
   <ul class="pagination">
-    <li :class="{ 'disabled': this.$store.state.companyPagination.current_page === 1 }" class="page-item">
+    <li :class="{ 'disabled': this.$store.state.companyPagination && this.$store.state.companyPagination.current_page === 1 }" class="page-item">
       <a @click="getPaginatedCompanies(this.$store.state.companyPagination.current_page -1)" class="page-link" href="#" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li v-for="index in this.$store.state.companyPagination.last_page" class="page-item" :class="{ 'active': this.$store.state.companyPagination.current_page === index }">
+    <li v-for="index in this.$store.state.companyPagination && this.$store.state.companyPagination.last_page" class="page-item" :class="{ 'active': this.$store.state.companyPagination.current_page === index }">
       <a @click="getPaginatedCompanies(index)" class="page-link" href="#">{{ index }}</a>
   </li>
-    <li :class="{ 'disabled': this.$store.state.companyPagination.current_page === this.$store.state.companyPagination.last_page }" class="page-item">
+    <li :class="{ 'disabled': this.$store.state.companyPagination && this.$store.state.companyPagination.current_page === this.$store.state.companyPagination.last_page }" class="page-item">
       <a @click="getPaginatedCompanies(this.$store.state.companyPagination.current_page + 1)" class="page-link" href="#" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>

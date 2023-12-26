@@ -75,7 +75,7 @@ const router = createRouter({
 });
 router.beforeEach((to, from, next) => {
     const isAuthenticated = localStorage.getItem('isAuthenticated');
-    if (to.path == '/admin-panel' && !isAuthenticated) {
+    if (to.path === '/admin-panel' && !isAuthenticated) {
         router.push({name: 'Login'});
     } else {
       next();
